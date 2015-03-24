@@ -15,10 +15,10 @@ class Menu extends CI_Model {
     // Constructor
     public function __construct() {
         parent::__construct();
-        $xml = simplexml_load_file(DATAPATH . 'menu.xml');
+        $this->xml = simplexml_load_file(DATAPATH . 'menu.xml');
 
         // build the list of patties - approach 1
-        foreach ($this->$xml->patties->patty as $patty) {
+        foreach ($this->xml->patties->patty as $patty) {
             $patty_names[(string) $patty['code']] = (string) $patty;
         }
 
