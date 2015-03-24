@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Order #2 will have three cheeseburgers for George, and takeout
+-->
+
+<!DOCTYPE order SYSTEM 'bonanza.dtd'>
+
+<order type="takeout">
+    <customer>George</customer>
+    <burger>
+        <patty type="beef"/>
+        <cheeses top="american" bottom="swiss"/>
+        <sauce type="ketchup"/>
+    </burger>
+    <burger>
+        <patty type="vege"/>
+        <cheeses top="gouda" bottom="gouda"/>
+        <topping type="lettuce"/>
+        <topping type="tomato"/>
+    </burger>
+    <burger>
+        <patty type="turkey"/>
+        <cheeses bottom="brie"/>
+        <topping type="raw"/>
+        <topping type="salsa"/>
+        <sauce type="fksauce"/>
+    </burger>
+</order>
+
