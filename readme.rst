@@ -18,6 +18,19 @@ Setup
 
 n/a
 
+*****
+F.A.Q
+*****
+
+<ul>
+<li>How can I test if a string ends in a specific substring?
+There is a built in function in PHP to do exactly that.
+<code>
+substr_compare($str, $test, strlen($str)-strlen($test), strlen($test)) === 0;
+</code>
+</li>
+</ul> 
+
 ***************
 Project Folders
 ***************
