@@ -24,10 +24,11 @@ if (!defined('APPPATH'))
             <div class="navbar">
                 <div class="navbar-inner">
                     <a class="brand" href="/"><img src="/assets/images/logo.png"/></a>
-                    {menubar} </div>
+                    <h1>{title}</h1>
+		</div>
             </div>           
             <div id="content">
-                <h1>{title}</h1>
+                
                 {content}
             </div>
             <div id="footer" class="span12">
