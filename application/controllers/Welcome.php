@@ -23,7 +23,7 @@ class Welcome extends Application {
     function index()
     {
 	// Build a list of orders
-	$orders = $this->order->getOrders();
+	$orders = $this->Order->getOrders();
 	// Present the list to choose from
 	$this->data['pagebody'] = 'homepage';
          $this->data['orders'] = $orders;
@@ -37,7 +37,7 @@ class Welcome extends Application {
     function order($filename)
     {
 	// Build a receipt for the chosen order
-	$order = $this->order->getSingleOrder($filename);
+	$order = $this->Order->getSingleOrder($filename);
         
 	// Present the list to choose from
 	$this->data['pagebody'] = 'justone';

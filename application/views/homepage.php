@@ -1,9 +1,9 @@
 <div class="row">
     Burger Bonanza?
     <div>
-        {orderInfo}
-            <a href="welcome/Order/{fileName}">{fileName}</a> ({customer})<br>
-        {/orderInfo}
+        {orders}
+        <li><a href="welcome/order/{ordernum}">{ordernum} - {customer}</a></li>
+        {/orders}
     </div>
-    <div>select an order</div>
+    <div>select an order from above</div>
 </div>
