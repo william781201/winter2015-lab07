@@ -4,7 +4,7 @@
  * This is a "CMS" model for quotes, but with bogus hard-coded data.
  * This would be considered a "mock database" model.
  *
- * @author jim
+ * @author William
  */
 class Menu extends CI_Model {
 

@@ -127,7 +127,7 @@ class Order extends CI_Model {
                 $newBurger['toppings'] = $toppings;
                 
                 // get sauces
-                $sauces = '';
+                $sauces = "";
                 $previousSauce = false;
                 if(isset($burger->sauce))
                 {
@@ -135,12 +135,14 @@ class Order extends CI_Model {
                     {
                         if($previousSauce)
                         {
-                            $sauces .= ', ';
+                            $sauces .= ", ";
                         }
                         
                         $previousSauce = true;
                         $sauce = $this->Menu->getSauce((string)$s['type']);
-                        $sauces .= (string)$sauce->name;
+                        if($sauce != null) {
+                            $sauces .= (string)$sauce->name;
+                        }
                     }
                 }
                 else

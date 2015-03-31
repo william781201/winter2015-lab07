@@ -2,7 +2,7 @@
     Burger Bonanza?
     <div>
         {orders}
-        <li><a href="welcome/order/{ordernum}">{ordernum} - {customer}</a></li>
+        <a href="welcome/order/{ordernum}">{ordernum} - {customer}</a>
         {/orders}
     </div>
     <div>select an order from above</div>
