@@ -26,12 +26,11 @@ class Welcome extends Application {
 	$dir = directory_map('../data/');
         $files = array();
         
-        foreach ($dir as $file)
-        {
+        foreach ($dir as $file) {
             if (strpos($file, 'Order') !== false && strpos($file, '.xml') !== false) {        
                 $order = new Order($file);
                 $files[] = array(
-                    'filename' => substr($file, 0, strlen($file) - 4),
+                    'fileName' => substr($file, 0, strlen($file) - 4),
                     'customer' => $order->customer);
             }
         }
