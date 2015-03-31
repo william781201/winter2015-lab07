@@ -28,7 +28,7 @@ class Order extends CI_Model {
         }
         $burgerCount = 0;
         
-        $this->load->model('menu');
+        $this->load->model('Menu');
         $this->xml = simplexml_load_file(DATAPATH . $filename);
         
         // Retrieve name and order type
@@ -36,62 +36,71 @@ class Order extends CI_Model {
         $this->type = (string) $this->xml['type'];
         
         // Assign the order instructions
-        if (isset($this->xml->instructions))
+        if (isset($this->xml->instructions)) {
             $this->$instructions = (string) $this->xml->$instructions;
+        }
+            
             
         foreach ($this->xml->burger as $burger) 
         {
             $burgerCount++;
-            $burga['num'] = $burgerCount;
+            $burger['num'] = $burgerCount;
             //Initialize values
             $cheeses = "";
             $toppings = "";
             $sauces = "";
             
-            $burga = array(
+            $burger = array(
                 'patty' => $burger->patty['type']
             );
-            $burga['num'] = $burgerCount;
+            $burger['num'] = $burgerCount;
             
             // Assign cheeses
-            if (isset($burger->cheeses['top']))
+            if (isset($burger->cheeses['top'])) {
                 $cheeses .= $burger->cheeses['top'] . "(top), ";
-            
-            if (isset($burger->cheeses['bottom']))
+            }
+                            
+            if (isset($burger->cheeses['bottom'])) {
                 $cheeses .= $burger->cheeses['bottom'] . "(bottom)";
-            $burga['cheese'] = $cheeses;
+            }                
+            $burger['cheese'] = $cheeses;
             
             // Assign toppings
-            if (!isset($burger->topping))
+            if (!isset($burger->topping)) {
                 $toppings .= "none";    
+            }                
             
             foreach($burger->topping as $topping) {
                 $toppings .= $topping['type'] . ", ";
             }
-            $burga['toppings'] = $toppings;
+            $burger['toppings'] = $toppings;
             
             
             // Assign sauces
-            if (!isset($burger->sauce))
+            if (!isset($burger->sauce)) {
                 $sauces .= "none";    
+            }                
             
             foreach($burger->sauce as $sauce) {
                 $sauces .= $sauce['type'] . ", ";
             }
-            $burga['sauces'] = $sauces;
+            $burger['sauces'] = $sauces;
             
             // Assign instructions
-            if (isset($burger->instructions))
-                $burga['instructions'] = (string) $burger->instructions;
-            else
-                $burga['instructions'] = "None";
+            if (isset($burger->instructions)) {
+                $burger['instructions'] = (string) $burger->instructions;
+            }                
+            else {
+                $burger['instructions'] = "None";
+            }
+                
             
             // Assign costs
             $cost = $this->burgerCost($burger);
             
-            $burga['cost'] = $cost;
+            $burger['cost'] = $cost;
             $this->total += $cost;       
-            $this->burgers[] = $burga;
+            $this->burgers[] = $burger;
         }
     }
     
@@ -102,23 +111,25 @@ class Order extends CI_Model {
         $burgerAmount = 0.00;
         
         // Calculate patty price
-        $burgerAmount += $this->menu->getPatty((string) $burger->patty['type'])->price;
+        $burgerAmount += $this->Menu->getPatty((string) $burger->patty['type'])->price;
         
         // Calculate cheese price
-        if (isset($burger->cheeses['top']))
-            $burgerAmount += $this->menu->getCheese((string) $burger->cheeses['top'])->price; 
+        if (isset($burger->cheeses['top'])) {
+            $burgerAmount += $this->Menu->getCheese((string) $burger->cheeses['top'])->price; 
+        }            
         
-        if (isset($burger->cheeses['bottom']))
-            $burgerAmount += $this->menu->getCheese((string) $burger->cheeses['bottom'])->price; 
+        if (isset($burger->cheeses['bottom'])) {
+            $burgerAmount += $this->Menu->getCheese((string) $burger->cheeses['bottom'])->price; 
+        }            
         
         // Calculate topping price
         foreach ($burger->topping as $topping) {
-            $burgerAmount += $this->menu->getTopping((string) $topping['type'])->price; 
+            $burgerAmount += $this->Menu->getTopping((string) $topping['type'])->price; 
         }
         
         // Calculate sauce price
         foreach ($burger->sauce as $sauce) {
-            $burgerAmount += $this->menu->getSauce((string) $sauce['type'])->price; 
+            $burgerAmount += $this->Menu->getSauce((string) $sauce['type'])->price; 
         }
         
         return $burgerAmount;

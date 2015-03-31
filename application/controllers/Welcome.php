@@ -13,7 +13,7 @@ class Welcome extends Application {
     {
 	parent::__construct();
         $this->load->helper('directory');
-        $this->load->model('order');
+        $this->load->model('Order');
     }
 
     //-------------------------------------------------------------
@@ -23,12 +23,12 @@ class Welcome extends Application {
     function index()
     {
 	// Build a list of orders
-	$dir = directory_map('./data/');
+	$dir = directory_map('../data/');
         $files = array();
         
         foreach ($dir as $file)
         {
-            if (strpos($file, 'order') !== false && strpos($file, '.xml') !== false) {        
+            if (strpos($file, 'Order') !== false && strpos($file, '.xml') !== false) {        
                 $order = new Order($file);
                 $files[] = array(
                     'filename' => substr($file, 0, strlen($file) - 4),

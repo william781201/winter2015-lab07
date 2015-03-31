@@ -35,8 +35,7 @@ class Menu extends CI_Model {
         }
         
         // build a list of cheeses
-        foreach ($this->xml->cheeses->cheese as $cheese)
-        {
+        foreach ($this->xml->cheeses->cheese as $cheese) {
             $record = new stdClass();
             $record->code = (string) $cheese['code'];
             $record->name = (string) $cheese;
@@ -44,8 +43,7 @@ class Menu extends CI_Model {
             $this->cheeses[$record->code] = $record;
         }
         // build a list of toppings
-        foreach ($this->xml->toppings->topping as $topping)
-        {
+        foreach ($this->xml->toppings->topping as $topping) {
             $record = new stdClass();
             $record->code = (string) $topping['code'];
             $record->name = (string) $topping;
@@ -54,8 +52,7 @@ class Menu extends CI_Model {
         }
         
         // build a list of sauces
-        foreach ($this->xml->sauces->sauce as $sauce)
-        {
+        foreach ($this->xml->sauces->sauce as $sauce) {
             $record = new stdClass();
             $record->code = (string) $sauce['code'];
             $record->name = (string) $sauce;
@@ -71,34 +68,42 @@ class Menu extends CI_Model {
 
     // retrieve a patty record, perhaps for pricing
     function getPatty($code) {
-        if (isset($this->patties[$code]))
+        if (isset($this->patties[$code])) {
             return $this->patties[$code];
-        else
+        }            
+        else {
             return null;
+        }            
     }
     
     // retrieve a cheese record, perhaps for pricing
     function getCheese($code) {
-        if (isset($this->cheeses[$code]))
+        if (isset($this->cheeses[$code])) {
             return $this->cheeses[$code];
-        else
+        }            
+        else {
             return null;
+        }            
     }
     
     // retrieve a topping record, perhaps for pricing
     function getTopping($code) {
-        if (isset($this->toppings[$code]))
+        if (isset($this->toppings[$code])) {
             return $this->toppings[$code];
-        else
+        }            
+        else {
             return null;
+        }            
     }
     
     // retrieve a sauce record, perhaps for pricing
     function getSauce($code) {
-        if (isset($this->sauces[$code]))
+        if (isset($this->sauces[$code])) {
             return $this->sauces[$code];
-        else
+        }            
+        else {
             return null;
+        }            
     }
 
 }
