@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Construct the most awesome burger you can think of, with at least 
+    one cheese, three toppings, and two sauces.
+One of your burgers should ask for peanut butter on it as well.
+-->
+
+<!DOCTYPE order SYSTEM 'bonanza.dtd'>
+
+<order type="eatin">
+    <customer>William</customer>
+    <burger>
+        <patty type="turkey"></patty>
+        <cheeses top="swiss" bottom="gruyere"></cheeses>
+        <topping type="dill"></topping>
+        <topping type="avocado"></topping>
+        <topping type="egg"></topping>
+        <sauce type="mustard"></sauce>
+        <sauce type="fksauce"></sauce>
+        <name type="galaxy"></name>
+    </burger>
+    <burger>
+        <patty type="bison"></patty>
+        <cheeses top="jack" bottom="blue"></cheeses>
+        <topping type="lettuce"></topping>
+        <topping type="bacon"></topping>
+        <sauce type="peanut_butter"></sauce>
+        <name type="country"></name>
+    </burger>
+</order>
