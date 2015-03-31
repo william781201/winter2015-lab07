@@ -2,7 +2,7 @@
     Burger Bonanza?
     <div>
         {orderInfo}
-        <a href="welcome/order/{fileName}">{fileName}</a> ({customer})<br>
+            <a href="welcome/Order/{fileName}">{fileName}</a> ({customer})<br>
         {/orderInfo}
     </div>
     <div>select an order</div>

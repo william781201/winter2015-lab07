@@ -23,21 +23,10 @@ class Welcome extends Application {
     function index()
     {
 	// Build a list of orders
-	$dir = directory_map('../data/');
-        $files = array();
-        
-        foreach ($dir as $file) {
-            if (strpos($file, 'Order') !== false && strpos($file, '.xml') !== false) {        
-                $order = new Order($file);
-                $files[] = array(
-                    'fileName' => substr($file, 0, strlen($file) - 4),
-                    'customer' => $order->customer);
-            }
-        }
-        
-	$this->data['orderInfo'] = $files;
+	$orders = $this->order->getOrders();
 	// Present the list to choose from
 	$this->data['pagebody'] = 'homepage';
+         $this->data['orders'] = $orders;
 	$this->render();
     }
     
@@ -48,18 +37,19 @@ class Welcome extends Application {
     function order($filename)
     {
 	// Build a receipt for the chosen order
-	$order = new Order($filename . '.xml');
+	$order = $this->order->getSingleOrder($filename);
         
-	$this->data['filename'] = $filename;
-        $this->data['customer'] = $order->customer;
-        $this->data['type'] = $order->type;
-        $this->data['burgers'] = $order->burgers;
-        $this->data['total'] = $order->total;
-        $this->data['instructions'] = $order->instructions;
 	// Present the list to choose from
 	$this->data['pagebody'] = 'justone';
+        
+        $this->data['customer']     = $order['customer'];
+        $this->data['burgers']      = $order['burgers'];
+        $this->data['ordertotal']   = $order['ordertotal'];
+        $this->data['ordernum']     = $filename;
+        $this->data['type']         = $order['type'];
+        $this->data['special']      = $order['special'];
+        
 	$this->render();
-    }
-    
+    }   
 
 }
